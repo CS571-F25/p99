@@ -1,16 +1,28 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import TourCard from '../components/TourCard';
+import { useEffect, useState } from 'react';
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_KEY);
 
 function EventSchedule() {
-  const events = [
-    { id: 1, city: "Los Angeles, CA", date: "December 15, 2024", venue: "Crypto.com Arena", price: "$150" },
-    { id: 2, city: "Houston, TX", date: "December 22, 2024", venue: "Toyota Center", price: "$145" },
-    { id: 3, city: "New York, NY", date: "January 5, 2025", venue: "Madison Square Garden", price: "$175" },
-    { id: 4, city: "Tokyo, Japan", date: "November 8, 2025", venue: "United Center", price: "$155" },
-    { id: 5, city: "Abu Dhabi, UAE", date: "November 15, 2025", venue: "FTX Arena", price: "$160" },
-    { id: 6, city: "Mumbai, India", date: "November 19, 2025", venue: "State Farm Arena", price: "$150" }
-  ];
+  const [events, setEvents] = useState([]);
+  useEffect(() => {
+    async function loadEvents() {
+      const { data, error } = await supabase
+        .from("events")
+        .select("*")
+        .order("id", { ascending: true });
 
+      if (error) {
+        console.error("Error fetching events:", error);
+      } else {
+        setEvents(data);
+      }
+    }
+
+    loadEvents();
+  }, []);
   return (
     <Container className="my-5">
       <h1 className="mb-4" style={{ color: '#8b5cf6' }}>CIRCUS MAXIMUS TOUR DATES</h1>

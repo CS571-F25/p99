@@ -11,7 +11,7 @@ function Countdown() {
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const tourEndDate = new Date('December 31, 2025 23:59:59').getTime();
+      const tourEndDate = new Date('December 31, 2025 23:59:59').getTime(); // change
       const now = new Date().getTime();
       const difference = tourEndDate - now;
 
