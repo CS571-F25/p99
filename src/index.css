@@ -60,3 +60,52 @@ button:focus,
 button:focus-visible {
   outline: 2px solid #a78bfa;
 }
+
+/* Navigation Button Styles */
+.nav-button-outline {
+  background-color: transparent !important;
+  border: 2px solid #8b5cf6 !important;
+  color: #8b5cf6 !important;
+  padding: 8px 20px !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.nav-button-outline:hover {
+  background-color: #8b5cf6 !important;
+  color: #ffffff !important;
+  border-color: #8b5cf6 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4) !important;
+}
+
+.nav-button-solid {
+  background-color: #8b5cf6 !important;
+  border: 2px solid #8b5cf6 !important;
+  color: #ffffff !important;
+  padding: 8px 20px !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.nav-button-solid:hover {
+  background-color: #6d28d9 !important;
+  border-color: #6d28d9 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.6) !important;
+}
+
+.nav-button-outline:active,
+.nav-button-solid:active {
+  transform: translateY(0);
+}
+
+.nav-button-outline:focus,
+.nav-button-solid:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3) !important;
+}

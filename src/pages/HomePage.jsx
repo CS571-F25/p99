@@ -1,8 +1,11 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import Countdown from '../components/Countdown';
 import InfoCard from '../components/InfoCard';
+import { useAuth } from '../contexts/AuthContext';
 
 function HomePage() {
+  const { user } = useAuth();
+
   return (
     <Container className="my-5">
       <Row className="mb-4 text-center">
@@ -20,7 +23,7 @@ function HomePage() {
       </Row>
       
       <Row>
-        <Col md={4} className="mb-3">
+        <Col md={user ? 4 : 12} className="mb-3">
           <InfoCard 
             title="Tour Dates"
             description="Check out upcoming tour dates and find a show near you."
@@ -28,21 +31,25 @@ function HomePage() {
           />
         </Col>
         
-        <Col md={4} className="mb-3">
-          <InfoCard 
-            title="My Tickets"
-            description="View and manage your saved tickets all in one place."
-            buttonText="My Tickets"
-          />
-        </Col>
-        
-        <Col md={4} className="mb-3">
-          <InfoCard 
-            title="Order History"
-            description="Review your past purchases and download tickets."
-            buttonText="View Orders"
-          />
-        </Col>
+        {user && (
+          <>
+            <Col md={4} className="mb-3">
+              <InfoCard 
+                title="My Tickets"
+                description="View and manage your saved tickets all in one place."
+                buttonText="My Tickets"
+              />
+            </Col>
+            
+            <Col md={4} className="mb-3">
+              <InfoCard 
+                title="Order History"
+                description="Review your past purchases and download tickets."
+                buttonText="View Orders"
+              />
+            </Col>
+          </>
+        )}
       </Row>
     </Container>
   );
