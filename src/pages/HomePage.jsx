@@ -15,40 +15,32 @@ function HomePage() {
           <p style={{ color: '#ffffff' }}>Experience the ultimate live performance</p>
         </Col>
       </Row>
-      
+
       <Row className="mb-4">
         <Col>
           <Countdown />
         </Col>
       </Row>
-      
+
       <Row>
-        <Col md={user ? 4 : 12} className="mb-3">
-          <InfoCard 
+        <Col md={user ? 6 : 12} className="mb-3">
+          <InfoCard
             title="Tour Dates"
             description="Check out upcoming tour dates and find a show near you."
             buttonText="View Dates"
+            to="/events"
           />
         </Col>
-        
+
         {user && (
-          <>
-            <Col md={4} className="mb-3">
-              <InfoCard 
-                title="My Tickets"
-                description="View and manage your saved tickets all in one place."
-                buttonText="My Tickets"
-              />
-            </Col>
-            
-            <Col md={4} className="mb-3">
-              <InfoCard 
-                title="Order History"
-                description="Review your past purchases and download tickets."
-                buttonText="View Orders"
-              />
-            </Col>
-          </>
+          <Col md={6} className="mb-3">
+            <InfoCard
+              title="My Tickets"
+              description="View and manage your saved tickets all in one place."
+              buttonText="My Tickets"
+              to="/my-tickets"
+            />
+          </Col>
         )}
       </Row>
     </Container>

@@ -13,7 +13,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!email || !password) {
       setError('Please fill in all fields');
       return;
@@ -22,10 +22,16 @@ function Login() {
     setError('');
     setLoading(true);
 
-    const { error } = await signIn(email, password);
+    const { data, error } = await signIn(email, password);
 
     if (error) {
-      setError(error.message);
+      if (error.message.includes('Invalid login credentials')) {
+        setError('Invalid email or password. Please check your credentials or verify your email if you just signed up.');
+      } else if (error.message.includes('Email not confirmed')) {
+        setError('Please verify your email before logging in. Check your inbox for the verification link.');
+      } else {
+        setError(error.message);
+      }
       setLoading(false);
     } else {
       navigate('/');
@@ -34,9 +40,9 @@ function Login() {
 
   return (
     <Container className="my-5 d-flex justify-content-center">
-      <Card style={{ 
-        backgroundColor: '#1a1a1a', 
-        border: '2px solid #8b5cf6', 
+      <Card style={{
+        backgroundColor: '#1a1a1a',
+        border: '2px solid #8b5cf6',
         color: '#ffffff',
         width: '100%',
         maxWidth: '500px'
@@ -55,11 +61,13 @@ function Login() {
 
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="email">
-              <Form.Label style={{ color: '#a78bfa' }}>Email</Form.Label>
+              <Form.Label htmlFor="email" style={{ color: '#a78bfa' }}>Email</Form.Label>
               <Form.Control
+                id="email"
                 type="email"
                 placeholder="Enter your email"
                 value={email}
+                aria-label="Email address"
                 onChange={(e) => setEmail(e.target.value)}
                 style={{
                   backgroundColor: '#000000',
@@ -70,11 +78,13 @@ function Login() {
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="password">
-              <Form.Label style={{ color: '#a78bfa' }}>Password</Form.Label>
+              <Form.Label htmlFor="password" style={{ color: '#a78bfa' }}>Password</Form.Label>
               <Form.Control
+                id="password"
                 type="password"
                 placeholder="Enter your password"
                 value={password}
+                aria-label="Password"
                 onChange={(e) => setPassword(e.target.value)}
                 style={{
                   backgroundColor: '#000000',

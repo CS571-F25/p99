@@ -11,7 +11,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+
   --purple-primary: #8b5cf6;
   --purple-dark: #6d28d9;
   --purple-light: #a78bfa;
@@ -23,6 +23,7 @@ a {
   color: #a78bfa;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #8b5cf6;
 }
@@ -52,16 +53,17 @@ button {
   cursor: pointer;
   transition: all 0.25s;
 }
+
 button:hover {
   background-color: #6d28d9;
   border-color: #a78bfa;
 }
+
 button:focus,
 button:focus-visible {
   outline: 2px solid #a78bfa;
 }
 
-/* Navigation Button Styles */
 .nav-button-outline {
   background-color: transparent !important;
   border: 2px solid #8b5cf6 !important;

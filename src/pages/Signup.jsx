@@ -16,7 +16,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!name || !email || !password || !confirmPassword) {
       setError('Please fill in all fields');
       return;
@@ -42,21 +42,26 @@ function Signup() {
       setError(error.message);
       setLoading(false);
     } else {
-      setSuccess('Account created successfully! Please check your email to verify your account.');
-      setLoading(false);
-      
-      // Redirect to login after 2 seconds
-      setTimeout(() => {
-        navigate('/login');
-      }, 2000);
+      if (data?.user) {
+        setSuccess('Registration midway, Confirm email to complete registration.');
+        setTimeout(() => {
+          navigate('/');
+        }, 1000);
+      } else {
+        setSuccess('Account created! Please check your email to verify your account before logging in.');
+        setLoading(false);
+        setTimeout(() => {
+          navigate('/login');
+        }, 3000);
+      }
     }
   };
 
   return (
     <Container className="my-5 d-flex justify-content-center">
-      <Card style={{ 
-        backgroundColor: '#1a1a1a', 
-        border: '2px solid #8b5cf6', 
+      <Card style={{
+        backgroundColor: '#1a1a1a',
+        border: '2px solid #8b5cf6',
         color: '#ffffff',
         width: '100%',
         maxWidth: '500px'
@@ -81,11 +86,13 @@ function Signup() {
 
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="name">
-              <Form.Label style={{ color: '#a78bfa' }}>Name</Form.Label>
+              <Form.Label htmlFor="name" style={{ color: '#a78bfa' }}>Name</Form.Label>
               <Form.Control
+                id="name"
                 type="text"
                 placeholder="Enter your name"
                 value={name}
+                aria-label="Full name"
                 onChange={(e) => setName(e.target.value)}
                 style={{
                   backgroundColor: '#000000',
@@ -96,11 +103,13 @@ function Signup() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="email">
-              <Form.Label style={{ color: '#a78bfa' }}>Email</Form.Label>
+              <Form.Label htmlFor="email" style={{ color: '#a78bfa' }}>Email</Form.Label>
               <Form.Control
+                id="email"
                 type="email"
                 placeholder="Enter your email"
                 value={email}
+                aria-label="Email address"
                 onChange={(e) => setEmail(e.target.value)}
                 style={{
                   backgroundColor: '#000000',
@@ -111,11 +120,13 @@ function Signup() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password">
-              <Form.Label style={{ color: '#a78bfa' }}>Password</Form.Label>
+              <Form.Label htmlFor="password" style={{ color: '#a78bfa' }}>Password</Form.Label>
               <Form.Control
+                id="password"
                 type="password"
                 placeholder="Enter your password (min 6 characters)"
                 value={password}
+                aria-label="Password"
                 onChange={(e) => setPassword(e.target.value)}
                 style={{
                   backgroundColor: '#000000',
@@ -126,11 +137,13 @@ function Signup() {
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="confirmPassword">
-              <Form.Label style={{ color: '#a78bfa' }}>Confirm Password</Form.Label>
+              <Form.Label htmlFor="confirmPassword" style={{ color: '#a78bfa' }}>Confirm Password</Form.Label>
               <Form.Control
+                id="confirmPassword"
                 type="password"
                 placeholder="Confirm your password"
                 value={confirmPassword}
+                aria-label="Confirm password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 style={{
                   backgroundColor: '#000000',

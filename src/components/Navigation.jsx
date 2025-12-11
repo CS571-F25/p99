@@ -23,12 +23,9 @@ function Navigation() {
             <Nav.Link as={Link} to="/" style={{ color: '#ffffff' }}>Home</Nav.Link>
             <Nav.Link as={Link} to="/events" style={{ color: '#ffffff' }}>Tour Dates</Nav.Link>
             {user && (
-              <>
-                <Nav.Link as={Link} to="/my-tickets" style={{ color: '#ffffff' }}>My Tickets</Nav.Link>
-                <Nav.Link as={Link} to="/purchased" style={{ color: '#ffffff' }}>Purchased</Nav.Link>
-              </>
+              <Nav.Link as={Link} to="/my-tickets" style={{ color: '#ffffff' }}>My Tickets</Nav.Link>
             )}
-            
+
             {user ? (
               <div className="d-flex align-items-center ms-3">
                 <span style={{ color: '#a78bfa', marginRight: '15px' }}>
@@ -38,6 +35,7 @@ function Navigation() {
                   onClick={handleLogout}
                   size="sm"
                   className="nav-button-outline"
+                  aria-label="Logout from account"
                 >
                   Logout
                 </Button>
@@ -70,5 +68,3 @@ function Navigation() {
 }
 
 export default Navigation;
-
-

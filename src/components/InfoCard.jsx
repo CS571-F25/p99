@@ -1,6 +1,7 @@
 import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router';
 
-function InfoCard({ title, description, buttonText }) {
+function InfoCard({ title, description, buttonText, to }) {
   return (
     <Card style={{ backgroundColor: '#1a1a1a', border: '2px solid #8b5cf6', color: '#ffffff' }}>
       <Card.Body>
@@ -8,7 +9,23 @@ function InfoCard({ title, description, buttonText }) {
         <Card.Text>
           {description}
         </Card.Text>
-        <Button style={{ backgroundColor: '#8b5cf6', border: 'none' }}>{buttonText}</Button>
+        {to ? (
+          <Button
+            as={Link}
+            to={to}
+            style={{ backgroundColor: '#8b5cf6', border: 'none' }}
+            aria-label={`${buttonText} - ${title}`}
+          >
+            {buttonText}
+          </Button>
+        ) : (
+          <Button
+            style={{ backgroundColor: '#8b5cf6', border: 'none' }}
+            aria-label={`${buttonText} - ${title}`}
+          >
+            {buttonText}
+          </Button>
+        )}
       </Card.Body>
     </Card>
   );

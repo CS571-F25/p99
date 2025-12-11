@@ -1,9 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import TourCard from '../components/TourCard';
 import { useEffect, useState } from 'react';
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_KEY);
+import { supabase } from '../supabase';
 
 function EventSchedule() {
   const [events, setEvents] = useState([]);
@@ -32,10 +30,7 @@ function EventSchedule() {
         {events.map(event => (
           <Col md={4} key={event.id} className="mb-3">
             <TourCard 
-              city={event.city}
-              date={event.date}
-              venue={event.venue}
-              price={event.price}
+              event={event}
             />
           </Col>
         ))}

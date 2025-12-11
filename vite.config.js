@@ -5,5 +5,9 @@ export default defineConfig({
   base: '/p99/',
   build: {
     outDir: 'docs'
+  },
+  preview: {
+    port: 4173,
+    strictPort: true
   }
 })
